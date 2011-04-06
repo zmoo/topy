@@ -1,0 +1,24 @@
+#!/usr/bin/php
+<?php
+$addr = (isset($_ENV["MUNIN_TOPY_ADDR"])) ? $_ENV["MUNIN_TOPY_ADDR"] : "127.0.0.1";
+$port = (isset($_ENV["MUNIN_TOPY_PORT"])) ? $_ENV["MUNIN_TOPY_PORT"] : "6969";
+
+if ($argc == 2 and $argv[1] == "config") {
+	echo "graph_title Topy users\n";
+	echo "graph_vlabel number of users\n";
+	echo "graph_category Topy\n";
+	echo "graph_info This graph shows the number of users managed by Topy (on $addr:$port)\n";
+	echo "users.label users\n";
+	die();
+}
+
+$link = topy_pconnect($addr, $port);
+if (!$link) {
+	die("Could not connect to server Topy at $addr:$port\n");
+}
+
+$stats = topy_query($link, "stats");
+if (isset($stats["users"])) {
+	echo "users.value ".$stats["users"]."\n";
+}
+?>

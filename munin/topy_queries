@@ -1,0 +1,37 @@
+#!/usr/bin/php
+<?php
+$addr = (isset($_ENV["MUNIN_TOPY_ADDR"])) ? $_ENV["MUNIN_TOPY_ADDR"] : "127.0.0.1";
+$port = (isset($_ENV["MUNIN_TOPY_PORT"])) ? $_ENV["MUNIN_TOPY_PORT"] : "6969";
+
+$link = topy_pconnect($addr, $port);
+if (!$link) {
+	die("Could not connect to server Topy at $addr:$port\n");
+}
+
+if ($argc == 2 and $argv[1] == "config") {
+	$stats = topy_query($link, "stats");
+	if (isset($stats["commands"])) {
+		echo "graph_title Topy queries\n";
+		echo "graph_vlabel queries per second\n";
+		echo "graph_category Topy\n";
+		echo "graph_info This graph shows the rate of Topy queries (on $addr:$port)\n";
+
+		$commands = $stats["commands"];
+		foreach ($commands as $key => $value) {
+			$field = str_replace("::", "_", $key);
+			echo $field.".type COUNTER\n"; 
+			echo $field.".label ".$key."\n";
+		}
+	}
+	die();
+}
+
+$stats = topy_query($link, "stats");
+if (isset($stats["commands"])) {
+	$commands = $stats["commands"];
+	foreach ($commands as $key => $value) {
+		$field = str_replace("::", "_", $key);
+		echo $field.".value ".$value."\n";
+	}
+}
+?>

@@ -1,0 +1,4 @@
+-- Version 0.10 -- 2011/03/28
+
+ * Fix bug of phpinfo()
+

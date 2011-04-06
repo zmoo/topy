@@ -1,0 +1,12 @@
+Source: php5-topy
+Section: web
+Priority: optional
+Maintainer: Guillaume Blairon <g@skyrock.com>
+Build-Depends: debhelper (>> 3.0.0), php5-dev
+Standards-Version: 3.6.2
+
+Package: php5-topy
+Architecture: any
+Depends: ${shlibs:Depends}, ${php:Depends}, ucf
+Description: PHP Topy Extension
+ No description yet.

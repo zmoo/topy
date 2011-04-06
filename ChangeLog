@@ -1,0 +1,167 @@
+-- Version 0.42 -- 2011/03/29
+
+ * Improve "top" command (add "set" attribut)
+ * Add filter "suffix$"
+
+-- Version 0.42 -- 2011/03/23
+
+ * Improve autodump
+ * Add filter "^prefix"
+
+-- Version 0.41 -- 2011/03/03
+
+ * Bug fix (users deletion, cf: 0.37)
+
+-- Version 0.40 -- 2011/03/02
+
+ * Catch SIGPIPE signal
+
+-- Version 0.39 -- 2011/03/02
+
+ * Use poll() / write() functions to send data
+
+-- Version 0.38 -- 2011/03/01
+
+ * Add "ts" field to FieldEvents::serialize_php() / FieldMarks::serialize_php()
+
+-- Version 0.37 -- 2011/02/22
+
+ * Use libevent to send data
+ * Add "Log" field type
+ * Add "cleanup" command
+ * Improve users deletion
+
+-- Version 0.36 -- 2011/17/02
+
+ * Bug fix (int64 user ids)
+ * --enable-int64id can work with old glib versions
+
+-- Version 0.35 -- 2011/16/02
+
+ * Implement --enable-int64id compilation option
+
+-- Version 0.34 -- 2010/11/23
+
+ * Use Libevent for udp interface
+ * Add new score rules for EVENTS fields
+ * Implement --enable-strid compilation option
+
+-- Version 0.33 -- 2010/02/03
+
+ * Improve replication
+ * Add binary dumps
+ * Imporve queries parser
+ * Add queries ":: <fiel Events> total get / set <n>"
+ * Bix bugs
+
+-- Version 0.32 -- 2010/02/23
+
+ * Improve autodump (runtime configuration, force autodump at termination)
+ * Add replication of queries :: <field> add/set/insert
+
+-- Version 0.31 -- 2010/01/27
+
+ * Fix bug of udp server
+
+-- Version 0.30 -- 2010/01/27
+
+ * Add command "insert [unique] <id> [,<date>]" for "ulog" fields
+
+-- Version 0.29 -- 2010/01/25
+
+ * Fix bug (name of "ulog" fields)
+
+-- Version 0.28 -- 2010/01/18
+
+ * Rewrite I/O methods
+ * Add keyword "join" for "top" / "contests :: <> get" commands
+ * Add command "fields list"
+ * Add mutex to "stats" object
+
+-- Version 0.27 -- 2009/09/09
+
+ * Add support of transactions Id
+
+-- Version 0.26 -- 2009/08/24
+
+ * Add support of inversed tops for contests
+
+-- Version 0.25 -- 2009/08/10
+
+ * Add support of inversed tops
+
+-- Version 0.24 -- 2007/07/01
+
+ * Add support of "contests" objects
+
+-- Version 0.23 -- 2009/04/11
+
+ * Add score rules for "marks" fields "last2/3/6::average/skyverage/count"
+ * Fix bug in methods StringUtils::to_int() and co
+
+-- Version 0.22 -- 2009/04/24
+
+ * Add command "<user> :: <field> help"
+ * Add command "<user> delete"
+ * Add command "<user> clear"
+ * Add command "<user> group get"
+ * Improve errors managment (when error occures during restoring process)
+ * Does't lock the main users vector during the whole dumping process
+ * Remove build option --enable-sm
+ * Manage output mode "text" for command "report"
+ * Manage output mode "php_serialize" for command "groups list" and "sets list"
+ * Improve errors managment at starting
+ * Improve Munin Plugin
+ * Create a new stats item "misc" for all "help" commands
+
+-- Version 0.21 -- 2009/04/17
+
+ * Add rules sum::skyverage / last::skyverage to "marks" fields
+ * Add method clear to fields
+ * Manage <field events> add n (for n < 0)
+
+-- Version 0.20 -- 2009/04/08
+
+ * Add new field type "uint"
+ * Change score rules for "marks" fields
+ * Change result of ":: <field> set <value>" commands
+
+-- Version 0.19 -- 2009/04/07
+
+ * Call libevent function in the main thread only
+ * Fix bug of "top" command (when less than [size] elements)
+ * Improve error managment for "restore"
+ * Add topy argument --autodump-delay
+ * Add topy argument --autodump-target
+ * Add topy argument --restore-autodump
+ * Update man page
+
+-- Version 0.18 -- 2009/03/28
+
+ * Fix the same bug as in version 0.17
+ * Dump in tempory file and rename it at end
+ * Rename configuration field "pid" to "pidfile"
+
+-- Version 0.17 -- 2009/03/24
+
+ * Fix major bug introduced by version 0.14
+
+-- Version 0.16 -- 2009/03/17
+
+ * "autodump_delay" is no more mendatory in topy.conf (default value is 3600)
+ * Use syslog for errors notifications
+ * Add parameter "--with-tests" to configure.ac
+
+-- Version 0.15 -- 2009/03/13
+
+ * Rename command "user <id> set_group <group>" to "user <id> group set <group>"
+ * Clean up result of "top" command
+ * Add "date" field in "report" result
+ * Add lock for timer
+ * Add command "time"
+
+-- Version 0.14 -- 2009/03/10
+
+ * Add autodump managment
+ * Rewrite server core (use bufferevent instead of posix standard functions)
+ * Bug fix
