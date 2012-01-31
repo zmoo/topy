@@ -43,7 +43,7 @@
 #define USER_ID_INT64
 #endif
 
-#ifdef USER_ID_STR 
+#ifdef USER_ID_STR
 typedef char * UserId;
 #else
 #ifdef USER_ID_INT64

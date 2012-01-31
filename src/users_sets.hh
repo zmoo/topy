@@ -56,7 +56,7 @@ public:
 #ifdef _USERS_SETS_CC
 UsersSets sets;
 #else
-extern UsersSets sets; 
+extern UsersSets sets;
 #endif
 
 #endif

@@ -101,7 +101,7 @@ void Contest::show(std::stringstream &out, int const size) {
 int Contest::find(User *user) {
 	int i = 0;
 	for (List::iterator it = list.begin(); it != list.end(); it++) {
-		if (it->user == user) 
+		if (it->user == user)
 			return i;
 		i++;
 	}

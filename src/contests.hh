@@ -68,7 +68,7 @@ public:
 #ifdef _CONTESTS_CC
 Contests contests;
 #else
-extern Contests contests; 
+extern Contests contests;
 #endif
 
 #endif

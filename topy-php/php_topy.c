@@ -102,7 +102,7 @@ int socket_open(char const *host, char const *port, long int const timeout_sec) 
 	timeout.tv_sec = timeout_sec;
 	timeout.tv_usec = 0;
 	if (
-		(setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout)) != 0) || 
+		(setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout)) != 0) ||
 		(setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char *) &timeout, sizeof(timeout)) != 0)
 	) {
 		freeaddrinfo(res);
@@ -169,7 +169,7 @@ void connection_error_ok(topy_connection_t *connection) {
 }
 
 void connection_close(topy_connection_t *connection) {
-	if (connection->socket != -1) 
+	if (connection->socket != -1)
 		return;
 
 //	php_printf("CLOSE\n");
@@ -250,7 +250,7 @@ void connection_query_read_result(topy_connection_t *connection, zval *return_va
 		size_t readen = read(connection->socket, buffer + size, buffer_size - size);
 
 		//Connection closed (End Of File)
-		if (readen == 0) { 
+		if (readen == 0) {
 			php_error(E_WARNING, "topy_query() error: EOF.");
 			connection_reconnect(connection);
 			free(buffer);
@@ -265,8 +265,8 @@ void connection_query_read_result(topy_connection_t *connection, zval *return_va
 		}
 
 		size += readen;
-		if (size >= 2 && buffer[size - 2] == '\r' && buffer[size - 1] == '\n') 
-			break;	
+		if (size >= 2 && buffer[size - 2] == '\r' && buffer[size - 1] == '\n')
+			break;
 
 		//Resize buffer
 		if (size == buffer_size) {
@@ -275,7 +275,7 @@ void connection_query_read_result(topy_connection_t *connection, zval *return_va
 		}
 	}
 	buffer[size - 2] = '\0';
-	
+
 	//parse header
 	char *line, *next;
 	line = strtok_r(buffer, "\n", &next);
@@ -507,7 +507,7 @@ PHP_FUNCTION(topy_query) {
 	zval *_zval;
 	char *str;
 	int str_len = 0;
-	
+
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rs", &_zval, &str, &str_len) == FAILURE) {
 		RETURN_FALSE;
 	}
@@ -534,7 +534,7 @@ PHP_FUNCTION(topy_query_send) {
 	zval *_zval;
 	char *str;
 	int str_len = 0;
-	
+
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rs", &_zval, &str, &str_len) == FAILURE) {
 		RETURN_FALSE;
 	}
@@ -557,7 +557,7 @@ PHP_FUNCTION(topy_query_send) {
 
 PHP_FUNCTION(topy_query_read) {
 	zval *_zval;
-	
+
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &_zval) == FAILURE) {
 		RETURN_FALSE;
 	}

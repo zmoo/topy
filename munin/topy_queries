@@ -19,7 +19,7 @@ if ($argc == 2 and $argv[1] == "config") {
 		$commands = $stats["commands"];
 		foreach ($commands as $key => $value) {
 			$field = str_replace("::", "_", $key);
-			echo $field.".type COUNTER\n"; 
+			echo $field.".type COUNTER\n";
 			echo $field.".label ".$key."\n";
 		}
 	}

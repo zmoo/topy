@@ -26,10 +26,10 @@ int main(int argc, char *argv[]) {
 	ConfigFile config;
 	config.parse("topy.conf");
 
-	if (config.isset("address")) 
+	if (config.isset("address"))
 		std::cout << "address: " << config.get("address") << std::endl;
 
-	if (config.isset("port")) 
+	if (config.isset("port"))
 		std::cout << "port: " << config.get("port") << std::endl;
 
 	ConfigFile::Fields::iterator it;

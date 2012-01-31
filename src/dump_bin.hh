@@ -35,7 +35,7 @@
 	DUMP_BIN(size, f); \
 	fwrite(str.data(), 1, size, f); \
 }
-	
+
 #define DUMP_BIN_CSTR(str, f) { \
 	uint8_t size = strlen(str); \
 	DUMP_BIN(size, f); \

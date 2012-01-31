@@ -4,7 +4,7 @@
 #define _STATS_CC
 #define _USERS_CC
 #define _CONTESTS_CC
-#define _USER_CC 
+#define _USER_CC
 #define _SERVER_CC
 #define _USERS_SETS_CC
 #define _GROUPS_INTERFACE_CC

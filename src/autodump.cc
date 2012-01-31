@@ -30,7 +30,7 @@
 //-- Job ----
 
 void AutoDump::wait() {
-	for (;;) {	
+	for (;;) {
 		data.lock();
 		bool quit = data.is_forced() or (time(NULL) >= data.get_last_at() + data.get_delay() and data.get_enabled());
 		data.unlock();
@@ -41,13 +41,13 @@ void AutoDump::wait() {
 }
 
 void AutoDump::main() {
-	for (;;) {	
+	for (;;) {
 		wait();
 
 		data.lock();
 		std::string target = data.get_target();
 		data.unlock();
-		
+
 		dump(target);
 	}
 }
@@ -73,7 +73,7 @@ bool AutoDump::dump(std::string const target) {
 	std::string message = (result) ? "Autodump successful." : "Could not dump data to '" + target + "'.";
 	log.msg((result) ? LOG_NOTICE : LOG_ERR, message);
 	mutex.unlock();
-	
+
 	data.lock();
 	data.last_dump(result, message);
 	data.unlock();

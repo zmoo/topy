@@ -59,9 +59,9 @@ int Parser::read_int() {
 	std::stringstream oss;
 	char next;
 
-	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and ((next >= '0' and next <= '9') or next == '-')) 
+	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and ((next >= '0' and next <= '9') or next == '-'))
 		oss << next;
-		
+
 	fb.sputbackc(next);
 
 	int i = -1;
@@ -73,9 +73,9 @@ uint64_t Parser::read_uint64() {
 	std::stringstream oss;
 	char next;
 
-	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and ((next >= '0' and next <= '9') or next == '-')) 
+	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and ((next >= '0' and next <= '9') or next == '-'))
 		oss << next;
-		
+
 	fb.sputbackc(next);
 
 	uint64_t i = -1;
@@ -109,16 +109,16 @@ std::string Parser::read_until(char const c) {
 	std::stringstream oss;
 	char next;
 
-	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and next != c) 
+	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and next != c)
 		oss << next;
-		
+
 	fb.sputbackc(next);
 	return oss.str();
 }
 
 void Parser::waitfor(char const c) {
 	char next = fb.sbumpc();
-	if (next == '\n') 
+	if (next == '\n')
 		line++;
 
 	if (next != c) {

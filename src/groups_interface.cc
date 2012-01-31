@@ -44,7 +44,7 @@ bool GroupsInterface::parse_query(ClientResult &result, std::string const cmd_pr
 
 		if (id == GROUP_UNDEF)
 			id = groups.add(name);
-		else	
+		else
 			groups.add(name, id, mask);
 
 		//replication

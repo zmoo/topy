@@ -59,19 +59,19 @@ time_t StringUtils::to_time(string const input) {
 		if (last == 'd' or last == 'h' or last == 'm' or last == 's') {
 			str = str.substr(0, str.size() - 1);
 			switch (last) {
-				case 's' : 
+				case 's' :
 					factor = 1;
 					break;
-				case 'm' : 
+				case 'm' :
 					factor = 60;
 					break;
-				case 'h' : 
+				case 'h' :
 					factor = 60 * 60;
 					break;
-				case 'd' : 
+				case 'd' :
 					factor = 60 * 60 * 24;
 					break;
-			} 
+			}
 		}
 	}
 

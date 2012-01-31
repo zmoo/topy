@@ -39,7 +39,7 @@ std::string Filter::get_error() {
 }
 
 bool Filter::compile(WordsParser *words_parser) {
-	context.groups = &groups; 
+	context.groups = &groups;
 	groups.lock();
 	expr = parser.parse(words_parser);
 	groups.unlock();

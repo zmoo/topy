@@ -48,7 +48,7 @@ public:
 	PROPERTY(std::string, target);
 	PROPERTY(int, delay);
 
-	//last dump	
+	//last dump
 	PROPERTY(time_t, last_at);
 	PROPERTY(std::string, last_message);
 	PROPERTY(bool, last_result);

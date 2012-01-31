@@ -37,14 +37,14 @@ char WordsParser::next_char() {
 
 std::string WordsParser::get_next(bool const allchars) {
 	char c = buffer->get();
-	if (buffer->eof()) 
+	if (buffer->eof())
 		return "";
 
 	//goto begining of word
 	uint8_t classe;
 	while ((classe = char_classe[(int) c]) == CHAR_CLASSE_SPACE) {
 		c = buffer->get();
-		if (buffer->eof()) 	
+		if (buffer->eof())
 			return "";
 	}
 
@@ -54,7 +54,7 @@ std::string WordsParser::get_next(bool const allchars) {
 		while (char_classe[(int) c] != CHAR_CLASSE_SPACE) {
 			result << c;
 			c = buffer->get();
-			if (buffer->eof()) 
+			if (buffer->eof())
 				return result.str();
 		}
 		buffer->unget();
@@ -69,7 +69,7 @@ std::string WordsParser::get_next(bool const allchars) {
 	while (char_classe[(int) c] == classe) {
 		result << c;
 		c = buffer->get();
-		if (buffer->eof()) 
+		if (buffer->eof())
 			return result.str();
 	}
 	buffer->unget();
@@ -112,7 +112,7 @@ WordsParser::WordsParser(std::istream *in) {
 	buffer = in;
 	current = "<undefined>";
 
-	for (int i = 0; i < 255; i++) 
+	for (int i = 0; i < 255; i++)
 		char_classe[i] = CHAR_CLASSE_UNDEF;
 
 	set_char_classe(" \n\r\t", CHAR_CLASSE_SPACE);

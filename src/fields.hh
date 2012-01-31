@@ -49,7 +49,7 @@ public:
 private:
 	typedef struct {
 		std::string name;
-		FieldType type;		
+		FieldType type;
 	} FieldDef;
 
 	FieldDef fields_def[USER_FIELDS_COUNT];
@@ -80,9 +80,9 @@ public:
 	void unlock();
 
 
-	typedef std::list< std::pair<std::string, std::string> > Conf; 
+	typedef std::list< std::pair<std::string, std::string> > Conf;
 	bool init(Conf &list);
-	
+
 	Fields();
 };
 

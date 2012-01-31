@@ -42,7 +42,7 @@ private:
 protected:
 	void clear();
 	void exit();
-	
+
 public:
 	int get_fd();
 	bool write(void *buffer, size_t size);

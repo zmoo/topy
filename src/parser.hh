@@ -27,7 +27,7 @@
 struct Parser {
 private:
 	std::string error_msg;
-	int line;	
+	int line;
 
 	std::filebuf fb;
 	std::string char_name(char const c);

@@ -73,7 +73,7 @@ Contest *Contests::del(std::string const name, bool const free) {
 	list.erase(it);
 	Contest *contest = it->second;
 	if (free)
-		delete contest;	
+		delete contest;
 
 	return contest;
 }
@@ -114,7 +114,7 @@ void Contests::serialize_php(std::stringstream &out) {
 
 bool Contests::parse_query(ClientResult &result, std::string const cmd_prefix, WordsParser *parser, OutputType const type) {
 	//!:: <name> <command>
-	//!	Execute <command> on contest <name> 
+	//!	Execute <command> on contest <name>
 	if (parser->current == "::") {
 		std::string name = parser->next();
 		Contest *contest = find(name);
@@ -133,7 +133,7 @@ bool Contests::parse_query(ClientResult &result, std::string const cmd_prefix, W
 
 		std::string name = parser->next();
 
-		parser->next();			
+		parser->next();
 		int field_id = parse_field_id(parser);
 		if (field_id == FIELD_ID_UNKNOWN) {
 			RETURN_PARSE_ERROR(result, "Not a valid field name.");

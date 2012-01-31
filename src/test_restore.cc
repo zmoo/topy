@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 		std::cerr << "USAGE: <pat>" << std::endl;
 		return -1;
 	}
-	
+
 	UsersParser parser;
 	if (!parser.open(argv[1])) {
 		std::cerr << "Can not open input file" << std::endl;

@@ -46,7 +46,7 @@ StatsVectorBase::~StatsVectorBase() {
 
 /** \brief constructor
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 StatsVector<type_s, len_s, is_unsigned>::StatsVector() {
 	count = 0;
 }
@@ -54,7 +54,7 @@ StatsVector<type_s, len_s, is_unsigned>::StatsVector() {
 /** \brief reinitialisate a vector with samples from another
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::clear() {
 	count = 0;
 }
@@ -62,19 +62,19 @@ void StatsVector<type_s, len_s, is_unsigned>::clear() {
 /** \brief dump human readable information about vector to standard output
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::dump(std::stringstream &output, bool const with_format) {
 	if (with_format)
 		output << sizeof(type_s) << ":";
 	output << (int) count << ":";
 	for (int i = 0; i < count; i++) {
-		if (i != 0) 
+		if (i != 0)
 			output << ",";
 		output << (int) samples[i];
 	}
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::dump_bin(FILE *f, bool const with_format) {
 	if (with_format) {
 		uint8_t samples_size = sizeof(type_s);
@@ -84,26 +84,26 @@ void StatsVector<type_s, len_s, is_unsigned>::dump_bin(FILE *f, bool const with_
 	fwrite(&samples, 1, sizeof(type_s) * count, f);
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::restore(Parser &parser) {
 	count = parser.read_int();
 	count = MIN(count, len_s);
 	parser.waitfor(':');
 	for (int i = 0; i < count; i++) {
 		samples[i] = parser.read_int();
-		if (i < count - 1) 
+		if (i < count - 1)
 			parser.waitfor(',');
-	}		
+	}
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::restore_bin(FILE *f) {
-	RESTORE_BIN(count, f);	
+	RESTORE_BIN(count, f);
 	count = MIN(count, len_s);
 	fread(&samples, 1, sizeof(type_s) * count, f);
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::serialize_php(std::stringstream &out) {
 	out << "a:" << (int) count << ":{";
 	for (int i = 0; i < count; i++)
@@ -116,7 +116,7 @@ void StatsVector<type_s, len_s, is_unsigned>::serialize_php(std::stringstream &o
  *  \param n sample index
  *  \return sample
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 int StatsVector<type_s, len_s, is_unsigned>::get_sample(unsigned int const n) {
 	return (n < count) ? samples[n] : 0;
 }
@@ -127,7 +127,7 @@ int StatsVector<type_s, len_s, is_unsigned>::get_sample(unsigned int const n) {
  *  \param value sample value
  *  \return true if success
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 bool StatsVector<type_s, len_s, is_unsigned>::set_sample(unsigned int n, int const value) {
 	if (n < count) {
 		samples[n] = value;
@@ -140,7 +140,7 @@ bool StatsVector<type_s, len_s, is_unsigned>::set_sample(unsigned int n, int con
  *
  * \return ssample size in bytes (1, 2 or 4)
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 unsigned int StatsVector<type_s, len_s, is_unsigned>::get_type_s() {
 	return sizeof(type_s);
 }
@@ -149,7 +149,7 @@ unsigned int StatsVector<type_s, len_s, is_unsigned>::get_type_s() {
  *
  *  \return max number of samples
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 unsigned int StatsVector<type_s, len_s, is_unsigned>::get_len_s() {
 	return len_s;
 }
@@ -159,7 +159,7 @@ unsigned int StatsVector<type_s, len_s, is_unsigned>::get_len_s() {
  *  \param n value to add to the first sample (default value is 1)
  *  \return true or false if overflow
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 bool StatsVector<type_s, len_s, is_unsigned>::inc(int const n) {
 	if (count == 0) {
 		count++;
@@ -179,7 +179,7 @@ bool StatsVector<type_s, len_s, is_unsigned>::inc(int const n) {
 	return true;
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 bool StatsVector<type_s, len_s, is_unsigned>::multiply(float const coef) {
 	for (int i = 0; i < count; i++) {
 		samples[i] = (type_s) ((float) samples[i] * coef);
@@ -187,7 +187,7 @@ bool StatsVector<type_s, len_s, is_unsigned>::multiply(float const coef) {
 	return true;
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::add(StatsVectorBase *vector) {
 	int size = vector->get_count();
 
@@ -196,13 +196,13 @@ void StatsVector<type_s, len_s, is_unsigned>::add(StatsVectorBase *vector) {
 			samples[i] = 0;
 		}
 		count = size;
-	}	
+	}
 	for (int i = 0; i < size; i++) {
-		samples[i] += vector->get_sample(i); 
+		samples[i] += vector->get_sample(i);
 	}
 }
 
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::count_active(StatsVectorBase *vector) {
 	int size = vector->get_count();
 
@@ -211,17 +211,17 @@ void StatsVector<type_s, len_s, is_unsigned>::count_active(StatsVectorBase *vect
 			samples[i] = 0;
 		}
 		count = size;
-	}	
+	}
 	for (int i = 0; i < size; i++) {
-		if (vector->get_sample(i) != 0) 
-			samples[i]++; 
+		if (vector->get_sample(i) != 0)
+			samples[i]++;
 	}
 }
 
 /** \brief calculate sum
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 int StatsVector<type_s, len_s, is_unsigned>::sum(int const n) {
 	int j = (n != 0) ? MIN(n, count) : count;
 	unsigned int sum = 0;
@@ -233,7 +233,7 @@ int StatsVector<type_s, len_s, is_unsigned>::sum(int const n) {
 /** \brief translate samples of n position
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::translate(unsigned int const n) {
 	int delta = MIN(n, len_s);
 
@@ -250,11 +250,11 @@ void StatsVector<type_s, len_s, is_unsigned>::translate(unsigned int const n) {
 /** \brief delete sample at position n
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 bool StatsVector<type_s, len_s, is_unsigned>::del(unsigned int const n) {
 	if (n >= count)
 		return false;
-	
+
 	for(int i = n; i < count - 1; i++)
 		samples[i] = samples[i + 1];
 
@@ -265,7 +265,7 @@ bool StatsVector<type_s, len_s, is_unsigned>::del(unsigned int const n) {
 /** \brief retrun position of a sample n (-1 if could not find)
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 int StatsVector<type_s, len_s, is_unsigned>::find(int const n) {
 	for (int i = 0; i < count; i++)
 		if (samples[i] == (type_s) n)
@@ -276,11 +276,11 @@ int StatsVector<type_s, len_s, is_unsigned>::find(int const n) {
 /** \brief output debug information about a vector
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::debug() {
 	std::cout << "Samples: ";
 	for (int i = 0; i < count; i++) {
-		if (i != 0) 
+		if (i != 0)
 			std::cout << ", ";
 		std::cout << (int) samples[i];
 	}
@@ -293,10 +293,10 @@ void StatsVector<type_s, len_s, is_unsigned>::debug() {
 /** \brief return information about a vector
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::show(std::stringstream &out) {
 	for (int i = 0; i < count; i++) {
-		if (i != 0) 
+		if (i != 0)
 			out << ", ";
 		out << (int) samples[i];
 	}
@@ -305,7 +305,7 @@ void StatsVector<type_s, len_s, is_unsigned>::show(std::stringstream &out) {
 /** \brief reinitialisate a vector with samples from another
  *
  */
-template <typename type_s, int len_s, bool is_unsigned> 
+template <typename type_s, int len_s, bool is_unsigned>
 void StatsVector<type_s, len_s, is_unsigned>::copy(StatsVectorBase *src) {
 	count = src->get_count();
 	for (int i = 0; i < count; i++)
@@ -472,7 +472,7 @@ Field::~Field() {
 	} \
 	parser.waitfor(':'); \
 	vector->restore(parser); \
-	parser.waitfor('}'); 
+	parser.waitfor('}');
 
 #define RESTORE_BIN_VECTOR(f, vector, size, type1, type2, type4, is_unsigned) \
 	{ \
@@ -509,7 +509,7 @@ bool FieldEvents::parse_query(ClientResult &result, std::string const cmd_prefix
 			result.type = PHP_SERIALIZE;
 			result.data << "i:" << total << ";";
 			result.send();
-			return true;			
+			return true;
 		}
 
 		//events!total set <value>
@@ -522,7 +522,7 @@ bool FieldEvents::parse_query(ClientResult &result, std::string const cmd_prefix
 			}
 			unsigned int value = StringUtils::to_uint(parser->current);
 			PARSING_END(parser, result);
-			
+
 			total = value;
 
 			//replication
@@ -534,7 +534,7 @@ bool FieldEvents::parse_query(ClientResult &result, std::string const cmd_prefix
 			result.type = PHP_SERIALIZE;
 			result.data << "i:" << total << ";";
 			result.send();
-			return true;			
+			return true;
 		}
 
 		RETURN_NOT_VALID_CMD(result);
@@ -554,7 +554,7 @@ bool FieldEvents::parse_query(ClientResult &result, std::string const cmd_prefix
 
 /** \brief inc counter for actual month & day
  *
- *  \param n 
+ *  \param n
  */
 void FieldEvents::add(int const n) {
 	update();
@@ -829,7 +829,7 @@ void FieldEvents::init() {
 	date.hour = -1;
 	date.day = -1;
 	date.month = -1;
-	
+
 	total = 0;
 	last_inc = 0;
 }
@@ -954,7 +954,7 @@ void FieldMarks::show(std::stringstream &out) {
 std::string FieldMarks::summary() {
 	std::stringstream result;
 	int denom = months_denom->sum();
-	if (denom == 0) 
+	if (denom == 0)
 		result << "UNDEF";
 	else
 		result << (float) months_num->sum() / (float) denom;
@@ -1301,13 +1301,13 @@ void FieldUlog::restore(Parser &parser) {
 	parser.waitfor('i');
 	parser.waitfor('{');
 	items.restore(parser);
-	parser.waitfor('}'); 
-	parser.waitfor(':'); 
+	parser.waitfor('}');
+	parser.waitfor(':');
 	parser.waitfor('d');
 	parser.waitfor('{');
 	dates.restore(parser);
-	parser.waitfor('}'); 
-	parser.waitfor('}'); 
+	parser.waitfor('}');
+	parser.waitfor('}');
 }
 
 void FieldUlog::restore_bin(FILE *f) {
@@ -1455,13 +1455,13 @@ void FieldLog::restore(Parser &parser) {
 	parser.waitfor('i');
 	parser.waitfor('{');
 	items.restore(parser);
-	parser.waitfor('}'); 
-	parser.waitfor(':'); 
+	parser.waitfor('}');
+	parser.waitfor(':');
 	parser.waitfor('d');
 	parser.waitfor('{');
 	dates.restore(parser);
-	parser.waitfor('}'); 
-	parser.waitfor('}'); 
+	parser.waitfor('}');
+	parser.waitfor('}');
 }
 
 void FieldLog::restore_bin(FILE *f) {
@@ -1555,12 +1555,12 @@ ReportFieldEvents::ReportFieldEvents() {
 	count = 0;
 
 	total = 0;
-	months = new StatsVector<uint64_t, EVENTS_MONTHS_LEN, true>; 
-	days = new StatsVector<uint64_t, EVENTS_DAYS_LEN, true>; 
-	hours = new StatsVector<uint64_t, EVENTS_HOURS_LEN, true>; 
-	active_months = new StatsVector<uint32_t, EVENTS_MONTHS_LEN, true>; 
-	active_days = new StatsVector<uint32_t, EVENTS_DAYS_LEN, true>; 
-	active_hours = new StatsVector<uint32_t, EVENTS_HOURS_LEN, true>; 
+	months = new StatsVector<uint64_t, EVENTS_MONTHS_LEN, true>;
+	days = new StatsVector<uint64_t, EVENTS_DAYS_LEN, true>;
+	hours = new StatsVector<uint64_t, EVENTS_HOURS_LEN, true>;
+	active_months = new StatsVector<uint32_t, EVENTS_MONTHS_LEN, true>;
+	active_days = new StatsVector<uint32_t, EVENTS_DAYS_LEN, true>;
+	active_hours = new StatsVector<uint32_t, EVENTS_HOURS_LEN, true>;
 }
 
 ReportFieldEvents::~ReportFieldEvents() {
