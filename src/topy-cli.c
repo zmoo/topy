@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <netdb.h>
 #include <sys/socket.h>
-#include <sys/time.h> 
+#include <sys/time.h>
 
 #include "commands.h"
 #include "commands_send.h"
@@ -49,13 +49,13 @@ int open_socket(char const *address, char const *port) {
 		perror("socket");
 		return -1;
 	}
-	
+
 	//set socket options
 	struct timeval timeout;
 	timeout.tv_sec = 1;
 	timeout.tv_usec = 0;
 	if (
-		(setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout)) != 0) | 
+		(setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout)) != 0) |
 		(setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char *) &timeout, sizeof(timeout)) != 0)
 	) {
 		perror("Can not set socket options\n");
@@ -80,7 +80,7 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "Can not open socket\n");
 		return 1;
 	}
-	
+
 	int i;
 	CmdVisitsIncRes visits;
 	for (i = 0; i < 10; i++)
@@ -95,6 +95,6 @@ int main(int argc, char **argv) {
 
 	printf("count: %i\n", topy_count(socket));
 	printf("Ok\n");
-	
+
 	close(socket);
 }

@@ -60,7 +60,7 @@ VectorUsers *UsersSets::del(std::string const name, bool const free) {
 	list.erase(it);
 	VectorUsers *vector = it->second;
 	if (free)
-		delete vector;	
+		delete vector;
 
 	return vector;
 }
@@ -69,7 +69,7 @@ void UsersSets::clear(bool const free) {
 	if (free) {
 		for (List::iterator it = list.begin(); it != list.end(); it++) {
 			VectorUsers *vector = it->second;
-			delete vector;	
+			delete vector;
 		}
 	}
 	list.clear();

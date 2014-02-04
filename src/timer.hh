@@ -36,14 +36,14 @@ public:
 	int week;
 	int month;
 	int year;
-	
+
 	time_t refresh();
 	void serialize_php(std::stringstream &out);
 	void debug(std::stringstream &out);
 	void lock();
 	void unlock();
 
-	Timer();	
+	Timer();
 };
 
 #ifdef _TIMER_CC

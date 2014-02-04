@@ -83,7 +83,7 @@ bool parse_join(WordsParser *parser, TopJoinItems &join, ClientResult &result) {
 bool parse_query(bool &parsed, ClientResult &result, WordsParser *parser, OutputType const mode) {
 	parsed = false;
 
-	//!TID <n> <command> 
+	//!TID <n> <command>
 	//!	Give a Transaction Id that will be returned with the command's result
 	if (parser->current == "TID") {
 		result.tid = StringUtils::to_uint(parser->next());
@@ -139,7 +139,7 @@ bool parse_query(bool &parsed, ClientResult &result, WordsParser *parser, Output
 
 		mutex->unlock();
 		return res;
-	} 
+	}
 
 	//!groups <command>
 	//!	Execute a command on groups
@@ -205,11 +205,11 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		parser->next();
 		autodump.data.lock();
 		bool res = autodump.data.parse_query(result, "autodump::", parser, mode);
-		autodump.data.unlock();	
+		autodump.data.unlock();
 		return res;
 	}
 
-	//!info 
+	//!info
 	//!	Get server information
 	else if (parser->current == "info") {
 		stats.inc("info");
@@ -221,8 +221,8 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		result.send();
 		return true;
 	}
-	
-	//!stats 
+
+	//!stats
 	//!	Get statistics about server
 	else if (parser->current == "stats") {
 		stats.inc("stats");
@@ -232,7 +232,7 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		switch (mode) {
 			case TEXT:
 				result.data << "STAT uptime " << server.uptime() << std::endl;
-				result.data << "STAT users " << users.count() << std::endl;			
+				result.data << "STAT users " << users.count() << std::endl;
 				stats.show(result.data, "commands::");
 				break;
 			default:
@@ -275,8 +275,8 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		return true;
 	}
 
-	//!halt 
-	//!	Stop server 
+	//!halt
+	//!	Stop server
 	//!	(available if server was compiled with a recent libevent version)
 	else if (parser->current == "halt") {
 		stats.inc("misc");
@@ -297,7 +297,7 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 #endif
 	}
 
-	//!mode <text|php_serialize|none> 
+	//!mode <text|php_serialize|none>
 	//!	Set default output format
 	else if (parser->current == "mode") {
 		stats.inc("misc");
@@ -328,7 +328,7 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		if (field_id == FIELD_ID_UNKNOWN) {
 			RETURN_PARSE_ERROR(result, "Not a valid field name.");
 		}
-		
+
 		ReportThread *thread = new ReportThread(this);
 		thread->field_id = field_id;
 		thread->type = mode;
@@ -479,14 +479,14 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		CountActiveThread *thread = new CountActiveThread(this);
 		thread->field_id = field_id;
 		thread->limit = time(NULL) - 5 * 60; //5 minutes
-		
+
 		if (parser->current == "limit" and parser->next() != "") {
 			thread->limit = time(NULL) - StringUtils::to_int(parser->current);
-			parser->next();			
+			parser->next();
 		}
 		else if (parser->current == "since" and parser->next() != "") {
 			thread->limit = StringUtils::to_int(parser->current);
-			parser->next();			
+			parser->next();
 		}
 
 		if (!parse_from(parser, &thread->from, result)) {
@@ -517,14 +517,14 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		CleanupThread *thread = new CleanupThread(this);
 		thread->field_id = field_id;
 		thread->limit = time(NULL) - 31 * 3600 * 24; //31 days
-		
+
 		if (parser->current == "limit" and parser->next() != "") {
 			thread->limit = time(NULL) - StringUtils::to_int(parser->current);
-			parser->next();			
+			parser->next();
 		}
 		else if (parser->current == "since" and parser->next() != "") {
 			thread->limit = StringUtils::to_int(parser->current);
-			parser->next();			
+			parser->next();
 		}
 
 		if (!parse_from(parser, &thread->from, result)) {
@@ -565,7 +565,7 @@ bool ClientTopy::parse_query(WordsParser *parser) {
 		return true;
 	}
 
-	//!debug 
+	//!debug
 	//!	Show debug information
 	else if (parser->current == "debug") {
 		stats.inc("misc");
@@ -606,7 +606,7 @@ void ServerTopy::new_client(int const _fd) {
 bool ServerTopy::dump_txt(std::string const path) {
 	std::filebuf fb;
 	fb.open(path.c_str(), std::ios_base::out | std::ios_base::trunc);
-	if (!fb.is_open()) 
+	if (!fb.is_open())
 		return false;
 
 	fields.dump(fb);
@@ -663,7 +663,7 @@ bool ServerTopy::restore_txt(std::string const path) {
 		fields.restore(parser);
 		groups.restore(parser);
 		users.restore(parser);
-	
+
 		parser.close();
 		return true;
 	}

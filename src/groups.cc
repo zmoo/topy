@@ -58,14 +58,14 @@ GroupId Groups::get_id(std::string const name) {
 	List::iterator it = list.find(name);
 	if (it == list.end())
 		return GROUP_UNKNOWN;
-	return it->second.id;	
+	return it->second.id;
 }
 
 GroupId Groups::get_mask(std::string const name) {
 	List::iterator it = list.find(name);
 	if (it == list.end())
 		return 0;
-	return it->second.mask;	
+	return it->second.mask;
 }
 
 Groups::Group Groups::get(std::string const name) {
@@ -94,7 +94,7 @@ std::string Groups::get_name(GroupId const id) {
 	for (List::iterator it = list.begin(); it != list.end(); it++) {
 		if (it->second.mask != 0 and ((id & it->second.mask) == it->second.id)) {
 			count++;
-			if (count > 1) 
+			if (count > 1)
 				result << "+";
 			result << it->first;
 		}
@@ -113,7 +113,7 @@ Groups::Filter Groups::filter_parse(std::string const str) {
 			Group group = group_it->second;
 			if (group.mask == 0)
 				return group;
-			
+
 			filter.mask |= group.mask;
 			filter.id |= group.id;
 		}

@@ -95,7 +95,7 @@ void Client::receive() {
 		std::string str = stream.str();
 		if (str.substr(0, 4) == "quit")
 			exit();
-		else {		
+		else {
 			char answer[6] = "OK\n\r\n";
 			write(&answer, sizeof(answer) - 1);
 		}
@@ -111,7 +111,7 @@ void client_write(bufferevent *ev_buffer, void *data) {
 void client_read(bufferevent *ev_buffer, void *data) {
 	Client *client = (Client *) data;
 	client->receive();
-	if (client->end) 
+	if (client->end)
 		client->close();
 }
 

@@ -75,18 +75,18 @@ class CountActiveThread : public ClientThread {
 public:
 	Filter filter;
 	VectorUsers *from;
-	int field_id;	
+	int field_id;
 	time_t limit;
 
 	void main();
 	CountActiveThread(Client *client);
 };
-	
+
 class CleanupThread : public ClientThread {
 public:
 	Filter filter;
 	VectorUsers *from;
-	int field_id;	
+	int field_id;
 	time_t limit;
 
 	void main();

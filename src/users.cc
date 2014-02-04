@@ -139,7 +139,7 @@ bool VectorUsers::report(std::stringstream &out, Filter &filter, int const field
 			return false;
 			break;
 	}
-	
+
 	lock();
 	for (List::iterator it = list.begin(); it != list.end(); it++) {
 		if (!(*it)->is_deleted()) {

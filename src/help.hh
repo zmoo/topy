@@ -80,7 +80,7 @@
 	"help\n" \
 	"	Show commands list\n" \
 	"debug\n" \
-	"	Show debug information\n" 
+	"	Show debug information\n"
 
 #define HELP_GROUPS \
 	"list of commands:\n" \
@@ -96,7 +96,7 @@
 	"stats\n" \
 	"	Show number of user in each group\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_USER \
 	"list of commands:\n" \
@@ -116,7 +116,7 @@
 	"clear\n" \
 	"	Clear user\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_USERS_SETS \
 	"list of commands:\n" \
@@ -128,7 +128,7 @@
 	"list\n" \
 	"	Show list of sets\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_CONTESTS \
 	"list of commands:\n" \
@@ -142,7 +142,7 @@
 	"list\n" \
 	"	Show list of sets\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_CONTEST \
 	"list of commands:\n" \
@@ -156,7 +156,7 @@
 	"size\n" \
 	"	Return size of contest\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_FIELD \
 	"list of commands:\n" \
@@ -170,21 +170,21 @@
 	"rules\n" \
 	"	List score rules\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_FIELD_ULOG \
 	"insert [unique] <id> [,<date>]\n" \
-	"	Insert item\n" 
+	"	Insert item\n"
 
 #define HELP_FIELD_LOG \
 	"insert [unique] <id> [,<date>]\n" \
-	"	Insert item\n" 
+	"	Insert item\n"
 
 #define HELP_FIELD_EVENTS \
 	"total get\n" \
 	"	Get total\n" \
 	"total set <value>\n" \
-	"	Set total\n" 
+	"	Set total\n"
 
 #define HELP_AUTODUMP \
 	"list of commands:\n" \
@@ -198,7 +198,7 @@
 	"force\n" \
 	"	Force autodump\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 #define HELP_FIELDS \
 	"list of commands:\n" \
@@ -208,7 +208,7 @@
 	"list\n" \
 	"	List fields\n" \
 	"help\n" \
-	"	Show commands list\n" 
+	"	Show commands list\n"
 
 
 #endif

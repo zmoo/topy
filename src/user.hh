@@ -73,10 +73,10 @@ PMutex user_lock[1024];
 extern PMutex user_lock[1024];
 #endif
 
-#ifdef USER_ID_STR 
+#ifdef USER_ID_STR
 	#include <cstring>
 	#include <cstdlib>
-	
+
 	#define USER_ID_TYPE_NAME "STRING"
 	#define USER_ID_COPY(id, value) id = (value) ? strdup(value) : NULL;
 	#define USER_ID_TO_STRING(id) std::string(id)

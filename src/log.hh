@@ -25,7 +25,7 @@
 #include <syslog.h>
 
 class Log {
-public: 
+public:
 	bool verbose;
 
 	void msg(const int crit, std::string const msg, bool const verbose_this = false);

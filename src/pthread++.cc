@@ -11,7 +11,7 @@ void *pthread_run(void *data) {
 	thread->main();
 	thread->exit();
 	return NULL;
-}	
+}
 
 void PThread::run() {
        pthread_create(&handle, &attr, pthread_run, this);

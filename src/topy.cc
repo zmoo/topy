@@ -164,24 +164,24 @@ void signal_handler(int sig) {
 	bool halt = false;
 	std::string name;
 	switch (sig) {
-		case SIGPIPE: 
-			name = "SIGPIPE"; 
+		case SIGPIPE:
+			name = "SIGPIPE";
 			break;
-		case SIGINT: 
+		case SIGINT:
 			name = "SIGINT";
 			halt = true;
 			break;
-		case SIGKILL: 
-			name = "SIGKILL"; 
+		case SIGKILL:
+			name = "SIGKILL";
 			halt = true;
 			break;
 		case SIGTERM:
-			name = "SIGTERM"; 
+			name = "SIGTERM";
 			halt = true;
 			break;
 		default:
 			name = "unknown";
-	}	
+	}
 	log.msg(LOG_NOTICE, "Received signal number: " + StringUtils::to_string(sig) + " (" + name +")", true);
 	if (halt) {
 		autodump.force();
@@ -219,36 +219,36 @@ int main(int argc, char **argv) {
 	ConfigFile config;
 	if (!config.parse((args.config_file != "") ? args.config_file : "/etc/topy.conf"))
 		return -1;
-	
+
 	if (!fields.init(config.fields)) {
 		log.msg(LOG_ERR, "Error in fields definition", true);
 		return -1;
 	}
 
-	std::string address = (args.address != "") ? args.address : 
+	std::string address = (args.address != "") ? args.address :
 		((config.isset("adress")) ? config.get("address") : "0.0.0.0");
-	std::string port = (args.port != "") ? args.port : 
+	std::string port = (args.port != "") ? args.port :
 		((config.isset("port")) ? config.get("port") : "6969");
-	std::string udp_address = (args.udp_address != "") ? args.udp_address : 
+	std::string udp_address = (args.udp_address != "") ? args.udp_address :
 		((config.isset("udp_address")) ? config.get("udp_address") : "");
-	std::string udp_port = (args.udp_port != "") ? args.udp_port : 
+	std::string udp_port = (args.udp_port != "") ? args.udp_port :
 		((config.isset("udp_port")) ? config.get("udp_port") : "");
-	std::string slave_address = (args.slave_address != "") ? args.slave_address : 
+	std::string slave_address = (args.slave_address != "") ? args.slave_address :
 		((config.isset("slave_address")) ? config.get("slave_address") : "");
-	std::string slave_port = (args.slave_port != "") ? args.slave_port : 
+	std::string slave_port = (args.slave_port != "") ? args.slave_port :
 		((config.isset("slave_port")) ? config.get("slave_port") : "");
-	std::string pidfile = (args.pidfile != "") ? args.pidfile : 
+	std::string pidfile = (args.pidfile != "") ? args.pidfile :
 		((config.isset("pidfile")) ? config.get("pidfile") : "");
-	std::string autodump_target = (args.autodump_target != "") ? args.autodump_target : 
+	std::string autodump_target = (args.autodump_target != "") ? args.autodump_target :
 		((config.isset("autodump_target")) ? config.get("autodump_target") : "");
-	int autodump_delay = (args.autodump_delay != 0) ? args.autodump_delay : 
+	int autodump_delay = (args.autodump_delay != 0) ? args.autodump_delay :
 		((config.isset("autodump_delay")) ? config.get_int("autodump_delay") : 3600);
 	log.verbose = args.verbose;
 
 	//Save pid
 	if (pidfile != "")
 		write_pid(pidfile);
-	
+
 	//Restore data
 	std::string restore = (args.restore_autodump) ? autodump_target : args.restore;
 	if (restore != "") {

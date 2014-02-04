@@ -46,9 +46,9 @@ int UsersParser::read_int() {
 	std::stringstream oss;
 	char next;
 
-	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and next >= '0' and next <= '9') 
+	while ((next = fb.sbumpc()) != std::filebuf::traits_type::eof() and next >= '0' and next <= '9')
 		oss << next;
-		
+
 	fb.sputbackc(next);
 
 	int i = -1;
@@ -72,9 +72,9 @@ void UsersParser::parse_stats_vector() {
 	waitfor(':');
 	for (int i = 0; i < count; i++) {
 		int sample = read_int();
-		if (i < count - 1) 
+		if (i < count - 1)
 			waitfor(',');
-	}		
+	}
 	waitfor('}');
 }
 

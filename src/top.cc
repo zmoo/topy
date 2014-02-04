@@ -44,7 +44,7 @@ void TopBase::add(User *user, UserScore score) {
 
 bool TopBase::del(User *user) {
 	List::iterator it = find_user(user);
-	if (it == list.end()) 
+	if (it == list.end())
 		return false;
 	list.erase(it);
 	return true;
@@ -141,7 +141,7 @@ int TopBase::count() {
 
 void Top::normalize() {
 	list.sort(compare_items);
-	
+
 	if (list.size() > size)
 		list.resize(size);
 

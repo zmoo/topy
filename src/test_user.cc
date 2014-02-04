@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
 
 	for (int i = 0; i < SIZE; i++)
 		delete users[i];
-	
+
 	char c;
 	std::cin >> c;
 

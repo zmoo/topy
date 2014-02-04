@@ -57,7 +57,7 @@ time_t Timer::refresh() {
 
 	update = now;
 	tm *gmt = gmtime(&now);
-	
+
 	// day 0 is 01/01/2008
 	year = gmt->tm_year;
 	if (year < 108) {

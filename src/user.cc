@@ -51,7 +51,7 @@ void User::serialize_php(std::stringstream &out) {
 
 	std::string field_name;
 	for (int i = 0; i < fields.size(); i++) {
-		field_name = fields.get_name(i); 
+		field_name = fields.get_name(i);
 		out << "s:" << field_name.size() << ":\"" << field_name << "\";";
 		field[i]->update();
 		field[i]->serialize_php(out);
@@ -259,7 +259,7 @@ bool User::set_group(std::string const name) {
 
 bool User::parse_query(ClientResult &result, std::string const cmd_prefix, WordsParser *parser, std::stringstream &replication_query) {
 	//!:: <field> <command>
-	//!	Execute <command> on field <field> 
+	//!	Execute <command> on field <field>
 	if (parser->current == "::") {
 		std::string field_name = parser->next();
 		FieldId field_id = parse_field_id(parser);

@@ -73,5 +73,5 @@ public:
 
 #include "ghash++.tcc"
 
-#endif 
+#endif
 

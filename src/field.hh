@@ -66,7 +66,7 @@ public:
 	virtual ~StatsVectorBase();
 };
 
-template <typename type_s, int len_s = 64, bool is_unsigned = false> 
+template <typename type_s, int len_s = 64, bool is_unsigned = false>
 class StatsVector : public StatsVectorBase {
 private:
 	type_s samples[len_s];
@@ -115,7 +115,7 @@ public:
 	virtual void get_score_rules(ScoreRulesList &result);
 	int get_rule_id(std::string name);
 	void rules_serialize_php(std::stringstream &out);
-	virtual UserScore score(int const rule = 0) = 0; 
+	virtual UserScore score(int const rule = 0) = 0;
 	virtual bool parse_query(ClientResult &result, std::string const cmd_prefix, WordsParser *parser, std::stringstream &replication_query);
 	virtual void clear() = 0;
 	virtual std::string name() = 0;
@@ -130,7 +130,7 @@ public:
 #define FIELD_EVENTS_HOURS_LAST3 4
 #define FIELD_EVENTS_HOURS_LAST6 5
 #define FIELD_EVENTS_HOURS_LAST12 6
- 
+
 #define FIELD_EVENTS_DAYS_SUM 7
 #define FIELD_EVENTS_DAYS_LAST 8
 #define FIELD_EVENTS_DAYS_PENULTIMATE 9
@@ -241,7 +241,7 @@ public:
 	void show(std::stringstream &out);
 	std::string summary();
 	void get_score_rules(ScoreRulesList &result);
-	UserScore score(int const rule = 0); 
+	UserScore score(int const rule = 0);
 	void clear();
 	std::string name();
 	time_t last_update();
@@ -325,7 +325,7 @@ public:
 	void restore_bin(FILE *f);
 	void show(std::stringstream &out);
 	std::string summary();
-	UserScore score(int const rule = 0); 
+	UserScore score(int const rule = 0);
 	void clear();
 	std::string name();
 	time_t last_update();
@@ -355,7 +355,7 @@ public:
 	void restore_bin(FILE *f);
 	void show(std::stringstream &out);
 	std::string summary();
-	UserScore score(int const rule = 0); 
+	UserScore score(int const rule = 0);
 	void clear();
 	std::string name();
 	time_t last_update();
@@ -364,7 +364,7 @@ public:
 class ReportField {
 public:
 	virtual bool add(Field const *field) = 0;
-	virtual void serialize_php(std::stringstream &out) = 0; 
+	virtual void serialize_php(std::stringstream &out) = 0;
 	virtual void show(std::stringstream &out) = 0;
 	virtual ~ReportField();
 };
